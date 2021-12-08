@@ -11,18 +11,12 @@ export const getMany = async (host, resource, query = {}, throwError = false) =>
   );
 };
 
-export const getOne = async (host, resource, id, throwError = false) => {
+export const getOne = async (host, resource, identificator, throwError = false) => {
   return new Promise((resolve, reject) =>
     axios
-      .get(`${host}/${resource}/${id}`)
+      .get(`${host}/${resource}/${identificator}`)
       .then(handleSuccess(resolve))
       .catch(handleError((err) => (throwError ? reject(err) : resolve({}))))
-  );
-};
-
-export const getOneTranslated = async (host, resource, slug) => {
-  return new Promise((resolve, reject) =>
-    axios.get(`${host}/${resource}/${slug}/translated`).then(handleSuccess(resolve)).catch(handleError(reject))
   );
 };
 
@@ -53,19 +47,19 @@ export const post = async (host, resource, payload) => {
   );
 };
 
-export const put = async (host, resource, payload, id) => {
+export const put = async (host, resource, payload, identificator) => {
   return new Promise((resolve, reject) =>
     axios
-      .put(`${host}/${resource}${id ? `/${id}` : ''}`, payload)
+      .put(`${host}/${resource}${identificator ? `/${identificator}` : ''}`, payload)
       .then(handleSuccess(resolve))
       .catch(handleError(reject))
   );
 };
 
-export const del = async (host, resource, id) => {
+export const del = async (host, resource, identificator) => {
   return new Promise((resolve, reject) =>
     axios
-      .delete(`${host}/${resource}${id ? `/${id}` : ''}`)
+      .delete(`${host}/${resource}${identificator ? `/${identificator}` : ''}`)
       .then(handleSuccess(resolve))
       .catch(handleError(reject))
   );

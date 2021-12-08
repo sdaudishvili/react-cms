@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Card } from '@material-ui/core';
 import { Page, PageHead } from '@/components';
-import FileManager from '@/components/FileManager';
+import { FileManager } from '@/components/FileManager';
 
 const useStyles = makeStyles((theme) => ({
   card: {

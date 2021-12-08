@@ -17,7 +17,7 @@ const Directories = (props) => {
         sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
       >
         {directories.map((dir) => (
-          <TreeItem nodeId={dir.path} label={dir.name} onLabelClick={() => {}}>
+          <TreeItem key={dir.path} nodeId={dir.path} label={dir.name} onLabelClick={() => {}}>
             <TreeItem nodeId="2" label="Calendar" />
           </TreeItem>
         ))}

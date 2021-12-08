@@ -8,30 +8,26 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import FileUploader from '../../FileUploader';
 
-const FormDialog = (props) => {
-  const {
-    onClose,
-    onUpload,
-    onSaveChosenFiles,
-    onResetChosenFiles,
-    open,
-    canUpload,
-    fileUploadProgress,
-    fileUploadList
-  } = props;
+const UploadFile = (props) => {
+  const { onClose, onResetChosenFiles, open, canUpload, fileUploadProgress, fileUploadList } = props;
+
+  const onFilesSelect = ({ target: { files } }) => {
+    const [file] = files;
+    console.log(file);
+  };
 
   return (
     <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-upload" fullWidth maxWidth="sm">
       <DialogTitle id="form-dialog-upload">Upload files</DialogTitle>
       <DialogContent>
-        <FileUploader fileUploadList={fileUploadList} onChange={onSaveChosenFiles} onReset={onResetChosenFiles} />
+        <FileUploader fileUploadList={fileUploadList} onChange={onFilesSelect} onReset={onResetChosenFiles} />
         {canUpload ? <LinearProgress variant="determinate" value={fileUploadProgress} /> : null}
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary" type="button">
           Cancel
         </Button>
-        <Button color="primary" onClick={() => onUpload(fileUploadList)} disabled={!canUpload} type="submit">
+        <Button color="primary" onClick={() => {}} disabled={!canUpload} type="submit">
           Upload
         </Button>
       </DialogActions>
@@ -39,10 +35,8 @@ const FormDialog = (props) => {
   );
 };
 
-FormDialog.propTypes = {
+UploadFile.propTypes = {
   onClose: PropTypes.func,
-  onUpload: PropTypes.func,
-  onSaveChosenFiles: PropTypes.func,
   onResetChosenFiles: PropTypes.func,
   open: PropTypes.bool,
   canUpload: PropTypes.bool,
@@ -50,10 +44,8 @@ FormDialog.propTypes = {
   fileUploadList: PropTypes.array
 };
 
-FormDialog.defaultProps = {
+UploadFile.defaultProps = {
   onClose: () => {},
-  onUpload: () => {},
-  onSaveChosenFiles: () => {},
   onResetChosenFiles: () => {},
   open: false,
   canUpload: false,
@@ -61,4 +53,4 @@ FormDialog.defaultProps = {
   fileUploadList: []
 };
 
-export default FormDialog;
+export default UploadFile;

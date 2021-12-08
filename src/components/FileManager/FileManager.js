@@ -10,7 +10,9 @@ import Navbar from './components/Navbar';
 import ContextMenu from './components/ContextMenu/ContextMenu';
 import { useFileManager } from './hooks/useFileManager';
 import { FileInfo, Directories, PathBreadcrumb } from './components';
-import { fileManagerView } from '@/utils/constants/fileManagerView';
+import { pathToArr } from './utils';
+import Dialogs from './components/Dialogs';
+import { fileManagerView } from './constants';
 
 const useStyles = makeStyles(() => ({
   fileList: {
@@ -18,22 +20,6 @@ const useStyles = makeStyles(() => ({
     borderRight: '1px solid lightgrey'
   }
 }));
-
-function pathToArr(path, name) {
-  let string = '';
-  const arr = [];
-  for (let i = 0; i < path.length; i += 1) {
-    if (path[i] === '/') {
-      arr.push(string);
-      string = '';
-      // eslint-disable-next-line no-continue
-      continue;
-    }
-    string += path[i];
-  }
-  arr.push(name);
-  return arr;
-}
 
 const FileManager = () => {
   const { directories, files: fileList, totalFiles, page, setPage, selectedFiles, setSelectedFiles } = useFileManager();
@@ -65,6 +51,7 @@ const FileManager = () => {
 
   const [contextMenuVisible, setContextMenuVisibility] = React.useState(false);
   const [contextMenuPosition, setContextMenuPosition] = React.useState([0, 0]);
+  const [dialogUploadFileIsVisible, setDialogUploadFileVisibility] = React.useState(false);
 
   const handleContextMenu = (event, file) => {
     event.preventDefault();
@@ -82,9 +69,6 @@ const FileManager = () => {
     setSelectedFiles([file]);
     setContextMenuVisibility(true);
     setContextMenuPosition([x, y]);
-
-    // dispatch(setContextMenuVisible(true));
-    // dispatch(setContextMenuPosition(x, y));
   };
 
   const handleHideContextMenu = () => {
@@ -100,7 +84,13 @@ const FileManager = () => {
   return (
     <div>
       <div onClick={handleHideContextMenu} onContextMenu={handleHideContextMenu}>
-        <Navbar canGoBack={!!path.length} path={path} onViewChange={setView} view={view} />
+        <Navbar
+          onUploadFile={() => setDialogUploadFileVisibility(true)}
+          canGoBack={!!path.length}
+          path={path}
+          onViewChange={setView}
+          view={view}
+        />
         <Grid spacing={0} container>
           <Grid item xs={2}>
             <Directories directories={directories} />
@@ -128,6 +118,10 @@ const FileManager = () => {
           contextMenuPosition={contextMenuPosition}
           acts={acts}
           onContentextMenuOpen={handleContentextMenuOpen}
+        />
+        <Dialogs
+          dialogUploadFileIsVisible={dialogUploadFileIsVisible}
+          onDialogClose={() => setDialogUploadFileVisibility(false)}
         />
 
         <Divider />

@@ -1,0 +1,1 @@
+export { fileManagerView } from './fileManagerView';

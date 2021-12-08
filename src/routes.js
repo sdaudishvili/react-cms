@@ -1,18 +1,18 @@
 import DashboardLayout from './layouts/Dashboard';
 import AuthLayout from './layouts/Auth';
 
-import LoginView from './views/Auth/Login';
-import UserInfo from './views/UserInfo';
+import Storage from './views/Storage';
+import Resources from './views/Resources';
 
 const routes = [
   {
     layout: AuthLayout,
     routes: [
-      {
-        path: '/auth/login',
-        exact: true,
-        component: LoginView
-      }
+      // {
+      //   path: '/auth/login',
+      //   exact: true,
+      //   component: LoginView
+      // }
     ]
   },
 
@@ -20,9 +20,14 @@ const routes = [
     layout: DashboardLayout,
     routes: [
       {
-        path: '/account',
+        path: '/resources',
         exact: true,
-        component: UserInfo
+        component: Resources
+      },
+      {
+        path: '/storage',
+        exact: true,
+        component: Storage
       }
     ]
   }

@@ -1,4 +1,4 @@
-import { fade, InputBase } from '@material-ui/core';
+import { alpha, InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
@@ -8,9 +8,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(3),
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.white, 0.15),
+    backgroundColor: alpha(theme.palette.white, 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.white, 0.25)
+      backgroundColor: alpha(theme.palette.white, 0.25)
     },
     marginLeft: 0,
     width: '100%',

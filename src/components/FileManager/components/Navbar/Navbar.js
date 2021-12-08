@@ -8,7 +8,7 @@ import ViewListIcon from '@material-ui/icons/ViewList';
 import AppsIcon from '@material-ui/icons/Apps';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { SearchField } from './components';
-import { fileManagerView } from '@/utils/constants/fileManagerView';
+import { fileManagerView } from '../../constants';
 
 const useStyles = makeStyles((theme) => ({
   root: {

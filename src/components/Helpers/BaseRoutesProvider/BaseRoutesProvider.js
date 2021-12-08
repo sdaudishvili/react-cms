@@ -1,12 +1,11 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import DashboardLayout from '@/layouts/Dashboard';
-import Storage from '@/views/Storage/Storage';
+import routes from '@/routes';
 
 const BaseRoutesProvider = () => {
   return (
     <Switch>
-      {/* {routes &&
+      {routes &&
         routes.map((x) =>
           x.routes?.map((route) => (
             <Route
@@ -20,17 +19,9 @@ const BaseRoutesProvider = () => {
               )}
             />
           ))
-        )} */}
-      <Route
-        exact
-        path="/storage"
-        render={() => (
-          <DashboardLayout>
-            <Storage />
-          </DashboardLayout>
         )}
-      />
-      <Redirect exact from="/" to="/contact" />
+
+      <Redirect exact from="/" to="/resources" />
     </Switch>
   );
 };

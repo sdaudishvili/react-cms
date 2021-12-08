@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
+import { Box } from '@material-ui/core';
 import useRouter from '@/utils/useRouter';
+import { PageHead } from '@/components';
 
 const { NODE_ENV } = process.env;
 const GA_MEASUREMENT_ID = process.env.REACT_APP_GA_MEASUREMENT_ID;
@@ -16,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Page = (props) => {
-  const { title, children, className, ...rest } = props;
+  const { title, children, className, h1, h2, ...rest } = props;
   const classes = useStyles();
 
   const router = useRouter();
@@ -39,7 +41,8 @@ const Page = (props) => {
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      {children}
+      <PageHead h1={h1} h2={h2} />
+      <Box mt={3}>{children}</Box>
     </div>
   );
 };
@@ -47,13 +50,17 @@ const Page = (props) => {
 Page.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+  h1: PropTypes.string,
+  h2: PropTypes.string
 };
 
 Page.defaultProps = {
   children: null,
   title: '',
-  className: ''
+  className: '',
+  h1: '',
+  h2: ''
 };
 
 export default Page;

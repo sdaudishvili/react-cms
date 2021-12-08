@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Grid from '@material-ui/core/Grid';
 import Loader from '../Loader';
-import { fileManagerView } from '@/utils/constants/fileManagerView';
 import { FileListEmptyMessage, GridFile, ListFile } from './components';
+import { fileManagerView } from '../../constants';
 
 const FileList = (props) => {
   const { fileList, selectedFiles, loading, className, onFileDoubleClick, onFileClick, onFileContextMenu, view } =
