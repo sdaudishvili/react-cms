@@ -1,6 +1,5 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import {
@@ -56,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ListRenderer = (props) => {
-  const { items, onDeleteClick, editRoute, displayKeys } = props;
+  const { items, onDeleteClick, onEditClick, displayKeys } = props;
 
   const classes = useStyles();
 
@@ -120,26 +119,22 @@ const ListRenderer = (props) => {
                     </TableCell>
                   ))}
                 <TableCell align="right" className={classes.actions}>
-                  {editRoute && (
-                    <Button
-                      color="primary"
-                      component={RouterLink}
-                      to={`${editRoute}/${item.id}`}
-                      size="small"
-                      variant="outlined"
-                    >
+                  {onEditClick && (
+                    <Button color="primary" size="small" variant="outlined" onClick={() => onEditClick(item, i)}>
                       Edit
                     </Button>
                   )}
-                  <Button
-                    onClick={() => handleDeleteButtonClick(item.id ? item.id : item)}
-                    className={classes.deleteButton}
-                    type="submit"
-                    color="secondary"
-                    variant="contained"
-                  >
-                    Delete
-                  </Button>
+                  {onDeleteClick && (
+                    <Button
+                      onClick={() => handleDeleteButtonClick(item.id ? item.id : item)}
+                      className={classes.deleteButton}
+                      type="submit"
+                      color="secondary"
+                      variant="contained"
+                    >
+                      Delete
+                    </Button>
+                  )}
                 </TableCell>
               </TableRow>
             ))}
@@ -175,12 +170,12 @@ const ListRenderer = (props) => {
 ListRenderer.propTypes = {
   items: PropTypes.array.isRequired,
   onDeleteClick: PropTypes.func,
-  editRoute: PropTypes.string,
+  onEditClick: PropTypes.func,
   displayKeys: PropTypes.array.isRequired
 };
 ListRenderer.defaultProps = {
-  onDeleteClick: () => {},
-  editRoute: ''
+  onDeleteClick: null,
+  onEditClick: null
 };
 
 export default ListRenderer;

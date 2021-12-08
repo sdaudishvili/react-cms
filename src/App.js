@@ -8,21 +8,8 @@ import { ScrollReset, BaseRoutesProvider } from './components';
 import './assets/scss/index.scss';
 import { UserProvider } from './context/userContext';
 import { NotificationProvider } from './context/notificationContext';
-import { getResources } from './api/resources';
 
 const App = () => {
-  const [resources, setResources] = React.useState([]);
-  console.log(resources);
-
-  const fetchResources = async () => {
-    const res = await getResources();
-    setResources(res);
-  };
-
-  React.useEffect(() => {
-    fetchResources();
-  }, []);
-
   return (
     <ThemeProvider theme={theme}>
       <SnackbarProvider dense={false}>

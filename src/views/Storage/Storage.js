@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Card } from '@material-ui/core';
-import { Page, PageHead } from '@/components';
+import { Page } from '@/components';
 import { FileManager } from '@/components/FileManager';
 
 const useStyles = makeStyles((theme) => ({
@@ -14,8 +14,7 @@ const Storage = () => {
   const classes = useStyles();
 
   return (
-    <Page title="Storage">
-      <PageHead h1="Browse files" h2="Storage" />
+    <Page title="Storage" h1="Browse files" h2="Storage">
       <Card className={classes.card}>
         <FileManager />
       </Card>

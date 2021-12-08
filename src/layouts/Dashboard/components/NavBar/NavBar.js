@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NavBar = (props) => {
-  const { openMobile, onMobileClose, className, ...rest } = props;
+  const { resources, openMobile, onMobileClose, className, ...rest } = props;
 
   const { user: userInfo } = useUser();
 
@@ -69,6 +69,13 @@ const NavBar = (props) => {
         {navigationConfig.map((list) => (
           <Navigation component="div" key={list.title} pages={list.pages} title={list.title} />
         ))}
+        {resources?.length > 0 && (
+          <Navigation
+            component="div"
+            pages={resources.map((x) => ({ title: x.description, href: `/resources/${x.key}` }))}
+            title="Resources"
+          />
+        )}
       </nav>
     </div>
   );
@@ -85,13 +92,15 @@ const NavBar = (props) => {
 NavBar.propTypes = {
   className: PropTypes.string,
   onMobileClose: PropTypes.func,
-  openMobile: PropTypes.bool
+  openMobile: PropTypes.bool,
+  resources: PropTypes.array
 };
 
 NavBar.defaultProps = {
   className: '',
   onMobileClose: () => {},
-  openMobile: false
+  openMobile: false,
+  resources: []
 };
 
 export default NavBar;

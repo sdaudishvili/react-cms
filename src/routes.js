@@ -2,11 +2,13 @@ import DashboardLayout from './layouts/Dashboard';
 import AuthLayout from './layouts/Auth';
 
 import Storage from './views/Storage';
+import Resource from './views/Resource';
 import Resources from './views/Resources';
 
 const routes = [
   {
     layout: AuthLayout,
+    path: '/auth',
     routes: [
       // {
       //   path: '/auth/login',
@@ -18,11 +20,17 @@ const routes = [
 
   {
     layout: DashboardLayout,
+    path: '/',
     routes: [
       {
         path: '/resources',
         exact: true,
         component: Resources
+      },
+      {
+        path: '/resources/:key',
+        exact: true,
+        component: Resource
       },
       {
         path: '/storage',

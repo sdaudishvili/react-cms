@@ -30,7 +30,7 @@ const Auth = (props) => {
 };
 
 Auth.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.node.isRequired
 };
 
 export default Auth;

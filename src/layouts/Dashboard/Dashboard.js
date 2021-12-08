@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 // import { removeNotification } from '@actions/base.action';
 import { makeStyles } from '@material-ui/styles';
 import { NavBar, TopBar } from './components';
+import { getResources } from '@/api/resources';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -38,15 +39,32 @@ const Dashboard = (props) => {
   const { children } = props;
 
   const classes = useStyles();
-  // const dispatch = useDispatch();
 
-  // const notifications = useSelector((state) => state.base.notifications);
+  React.useEffect(() => {
+    console.log('test');
+  }, []);
+
+  const [resources, setResources] = React.useState([]);
+
+  const fetchResources = async () => {
+    try {
+      const res = await getResources();
+      console.log(res);
+      setResources(res);
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
+
+  React.useEffect(() => {
+    fetchResources();
+  }, []);
 
   return (
     <div className={classes.root}>
       <TopBar className={classes.topBar} />
       <div className={classes.container}>
-        <NavBar className={classes.navBar} />
+        <NavBar className={classes.navBar} resources={resources} />
         <main className={classes.content}>{children}</main>
       </div>
     </div>

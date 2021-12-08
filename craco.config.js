@@ -1,5 +1,6 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
 
 const appRoot = path.resolve(__dirname, './');
 
@@ -25,6 +26,11 @@ module.exports = {
         }
       ]
     },
-    plugins: [new Dotenv({ path: envPath })]
+    plugins: [
+      new Dotenv({ path: envPath }),
+      new webpack.ProvidePlugin({
+        React: 'react'
+      })
+    ]
   }
 };

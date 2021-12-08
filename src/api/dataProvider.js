@@ -2,12 +2,12 @@ import { axiosRemote as axios } from '@/utils/axios';
 import buildQuery from '@/utils/buildQuery';
 import { handleError, handleSuccess } from './handler';
 
-export const getMany = async (host, resource, query = {}, throwError = false) => {
+export const getMany = async (host, resource, query = {}, hasPagination = true, throwError = false) => {
   return new Promise((resolve, reject) =>
     axios
       .get(`${host}/${resource}${buildQuery(query)}`)
-      .then(handleSuccess(resolve, true))
-      .catch(handleError((err) => (throwError ? reject(err) : resolve({ items: [], total: 0 }))))
+      .then(handleSuccess(resolve, hasPagination))
+      .catch(handleError((err) => (throwError ? reject(err) : resolve(hasPagination ? { items: [], total: 0 } : []))))
   );
 };
 
