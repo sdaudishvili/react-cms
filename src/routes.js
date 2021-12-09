@@ -2,8 +2,8 @@ import DashboardLayout from './layouts/Dashboard';
 import AuthLayout from './layouts/Auth';
 
 import Storage from './views/Storage';
-import Resource from './views/Resource';
 import Resources from './views/Resources';
+import Resource from './views/Resource';
 
 const routes = [
   {

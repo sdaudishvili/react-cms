@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Page = (props) => {
-  const { title, children, className, h1, h2, ...rest } = props;
+  const { title, children, className, h1, h2, action, ...rest } = props;
   const classes = useStyles();
 
   const router = useRouter();
@@ -41,7 +41,7 @@ const Page = (props) => {
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <PageHead h1={h1} h2={h2} />
+      <PageHead h1={h1} h2={h2} action={action} />
       <Box mt={3}>{children}</Box>
     </div>
   );
@@ -52,7 +52,8 @@ Page.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
   h1: PropTypes.string,
-  h2: PropTypes.string
+  h2: PropTypes.string,
+  action: PropTypes.node
 };
 
 Page.defaultProps = {
@@ -60,7 +61,8 @@ Page.defaultProps = {
   title: '',
   className: '',
   h1: '',
-  h2: ''
+  h2: '',
+  action: null
 };
 
 export default Page;

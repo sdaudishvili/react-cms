@@ -1,4 +1,4 @@
-import { getMany, getOne, put } from '@/api/dataProvider';
+import { getMany, getOne, post, put } from '@/api/dataProvider';
 import { host } from '@/api/host';
 import { config } from './config';
 
@@ -12,4 +12,8 @@ export const getResource = (key) => {
 
 export const updateResource = (payload, key) => {
   return put(host.RESOURCES, config.resources, payload, key);
+};
+
+export const createResource = (payload) => {
+  return post(host.RESOURCES, config.resources, payload);
 };

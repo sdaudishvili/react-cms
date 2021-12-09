@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const PageHead = (props) => {
-  const { children: rightSlot, h1, h2, className, ...rest } = props;
+  const { action, h1, h2, className, ...rest } = props;
 
   const classes = useStyles();
 
@@ -24,7 +24,7 @@ const PageHead = (props) => {
             {h1}
           </Typography>
         </Grid>
-        <Grid item>{rightSlot}</Grid>
+        <Grid item>{action}</Grid>
       </Grid>
     </div>
   );
@@ -34,14 +34,14 @@ PageHead.propTypes = {
   className: PropTypes.string,
   h1: PropTypes.string,
   h2: PropTypes.string,
-  children: PropTypes.any
+  action: PropTypes.any
 };
 
 PageHead.defaultProps = {
   className: '',
   h1: '',
   h2: '',
-  children: null
+  action: null
 };
 
 export default PageHead;

@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { removeNotification } from '@actions/base.action';
 import { makeStyles } from '@material-ui/styles';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavBar, TopBar } from './components';
-import { getResources } from '@/api/resources';
+import { loadResources } from '@/store/actions/resources.action';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -39,25 +40,12 @@ const Dashboard = (props) => {
   const { children } = props;
 
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const { resources } = useSelector((state) => state.resources);
 
   React.useEffect(() => {
-    console.log('test');
-  }, []);
-
-  const [resources, setResources] = React.useState([]);
-
-  const fetchResources = async () => {
-    try {
-      const res = await getResources();
-      console.log(res);
-      setResources(res);
-    } catch (error) {
-      console.log('error', error);
-    }
-  };
-
-  React.useEffect(() => {
-    fetchResources();
+    dispatch(loadResources());
   }, []);
 
   return (

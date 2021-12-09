@@ -7,7 +7,6 @@ import { Divider, Paper, Avatar, Typography } from '@material-ui/core';
 import getInitials from '@/utils/getInitials';
 import useRouter from '@/utils/useRouter';
 import { Navigation } from '@/components';
-import { useUser } from '@/context/userContext';
 import navigationConfig from './navigationConfig';
 
 const useStyles = makeStyles((theme) => ({
@@ -39,12 +38,10 @@ const useStyles = makeStyles((theme) => ({
 const NavBar = (props) => {
   const { resources, openMobile, onMobileClose, className, ...rest } = props;
 
-  const { user: userInfo } = useUser();
-
   const classes = useStyles();
   const router = useRouter();
 
-  const fullName = `${userInfo.given_name}`;
+  const fullName = `LEAVINGSTONE CMS`;
 
   useEffect(() => {
     if (openMobile) {
@@ -62,7 +59,7 @@ const NavBar = (props) => {
         <Typography className={classes.name} variant="h4">
           {fullName}
         </Typography>
-        <Typography variant="body2">{userInfo.email}</Typography>
+        <Typography variant="body2">Here should be email</Typography>
       </div>
       <Divider className={classes.divider} />
       <nav className={classes.navigation}>
@@ -72,7 +69,7 @@ const NavBar = (props) => {
         {resources?.length > 0 && (
           <Navigation
             component="div"
-            pages={resources.map((x) => ({ title: x.description, href: `/resources/${x.key}` }))}
+            pages={resources.map((x) => ({ title: x.description, href: `/resources/update/${x.key}` }))}
             title="Resources"
           />
         )}

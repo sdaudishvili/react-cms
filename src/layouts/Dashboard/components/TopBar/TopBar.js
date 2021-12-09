@@ -8,7 +8,6 @@ import InputIcon from '@material-ui/icons/Input';
 
 import useRouter from '@/utils/useRouter';
 import removeAuthTokens from '@/utils/removeAuthTokens';
-import { useUser } from '@/context/userContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 
 const TopBar = (props) => {
   const { onOpenNavBarMobile, className, ...rest } = props;
-  const { setUser } = useUser();
 
   const classes = useStyles();
   const { history } = useRouter();
@@ -43,7 +41,7 @@ const TopBar = (props) => {
   const handleLogout = () => {
     history.push('/auth/login');
     removeAuthTokens();
-    setUser({});
+    // setUser({});
   };
 
   return (
