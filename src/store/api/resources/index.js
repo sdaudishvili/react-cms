@@ -10,10 +10,10 @@ export const getResource = (key) => {
   return getOne(host.RESOURCES, config.resources, key);
 };
 
-export const updateResource = (payload, key) => {
+export const putResource = (payload, key) => {
   return put(host.RESOURCES, config.resources, payload, key);
 };
 
-export const createResource = (payload, key) => {
+export const postResource = (payload, key) => {
   return post(host.RESOURCES, `${config.resources}/${key}`, payload);
 };

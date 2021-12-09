@@ -1,27 +1,20 @@
-import React from 'react';
 import { useParams } from 'react-router';
 import { TextField, Button, CardContent, CardHeader, Card, Divider } from '@material-ui/core';
-import { useSnackbar } from 'notistack';
+import { useDispatch } from 'react-redux';
 import { ElemsRenderer, Page } from '@/components';
-import { getResource, updateResource } from '@/store/api/resources';
 import { ResourceProperties } from './components';
-import { generateErrorMsg } from '@/utils/messages/generateErrorMsg';
-
-// "name": "string",
-// "key": "string",
-// "placeholder": "string",
-// "type": "text",
-// "isRequired": true
+import { getResource, updateResource } from '@/store/actions/resources.action';
 
 const ResourceUpdate = () => {
   const { key } = useParams();
 
   const [resource, setResource] = React.useState({});
   const [loading, setLoading] = React.useState(false);
+  const dispatch = useDispatch();
 
   const fetchResource = async () => {
     setLoading(true);
-    const res = await getResource(key);
+    const res = await dispatch(getResource(key));
     setResource(res);
     setLoading(false);
   };
@@ -34,33 +27,14 @@ const ResourceUpdate = () => {
 
   const title = loading ? 'Loading...' : resource.description || 'New ResourceUpdate';
   const { properties = [] } = resource;
-  const { enqueueSnackbar } = useSnackbar();
-
-  const propertiesChangeHandler = async (newProperties) => {
-    const updatedResource = { ...resource, properties: newProperties };
-
-    try {
-      await updateResource(updatedResource, key);
-      setResource(updatedResource);
-    } catch (err) {
-      if (err.data?.errors) {
-        err.data.errors.forEach((err) => enqueueSnackbar(generateErrorMsg(err), { variant: 'error' }));
-      } else {
-        enqueueSnackbar(JSON.stringify(err), { variant: 'error' });
-      }
-    }
-  };
 
   const saveHandler = async () => {
-    try {
-      await updateResource(resource, key);
-    } catch (err) {
-      if (err.data?.errors) {
-        err.data.errors.forEach((err) => enqueueSnackbar(generateErrorMsg(err), { variant: 'error' }));
-      } else {
-        enqueueSnackbar(JSON.stringify(err), { variant: 'error' });
-      }
-    }
+    dispatch(updateResource(resource, key));
+  };
+
+  const propertiesChangeHandler = (newProperties) => {
+    const updatedResource = { ...resource, properties: newProperties };
+    dispatch(updateResource(updatedResource, key));
   };
 
   const elems = [

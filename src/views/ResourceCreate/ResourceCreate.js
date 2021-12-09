@@ -1,18 +1,16 @@
 import React from 'react';
 import { TextField, Button } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 import { CardRenderer, ElemsRenderer, Page } from '@/components';
-import { createResource } from '@/store/api/resources';
+import { createResource } from '@/store/actions/resources.action';
 
 const ResourceCreate = () => {
   const [resource, setResource] = React.useState({ description: '' });
   const [key, setKey] = React.useState('');
+  const dispatch = useDispatch();
 
-  const saveHandler = async () => {
-    try {
-      await createResource(resource, key);
-    } catch (err) {
-      console.log(err);
-    }
+  const saveHandler = () => {
+    dispatch(createResource(resource, key));
   };
 
   const elems = [
