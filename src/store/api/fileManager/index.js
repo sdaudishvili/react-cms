@@ -1,5 +1,5 @@
-import { getMany, post, del } from '@/api/dataProvider';
-import { host } from '@/api/host';
+import { getMany, post, del } from '@/store/api/dataProvider';
+import { host } from '@/store/api/host';
 import buildQuery from '@/utils/buildQuery';
 import { config } from './config';
 

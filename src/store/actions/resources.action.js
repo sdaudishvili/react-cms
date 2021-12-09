@@ -1,4 +1,4 @@
-import { getResources } from '@/api/resources';
+import { getResources } from '@/store/api/resources';
 
 export const SET_RESOURCES = 'SET_RESOURCES';
 

@@ -9,7 +9,7 @@ import { Dropzone } from '@/components';
 import 'cropperjs/dist/cropper.css';
 
 import { generateErrorMsg } from '@/utils/messages/generateErrorMsg';
-import { staticUrl } from '@/api/host';
+import { staticUrl } from '@/store/api/host';
 
 const cropImage = () => {};
 

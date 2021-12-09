@@ -1,5 +1,5 @@
-import { getMany, getOne, post, put } from '@/api/dataProvider';
-import { host } from '@/api/host';
+import { getMany, getOne, post, put } from '@/store/api/dataProvider';
+import { host } from '@/store/api/host';
 import { config } from './config';
 
 export const getResources = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { getDirectories, getFiles } from '@/api/fileManager';
+import { getDirectories, getFiles } from '@/store/api/fileManager';
 
 const PER_PAGE = 24;
 

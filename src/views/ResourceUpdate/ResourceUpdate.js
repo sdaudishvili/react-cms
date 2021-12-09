@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { TextField, Button, CardContent, CardHeader, Card, Divider } from '@material-ui/core';
 import { useSnackbar } from 'notistack';
 import { ElemsRenderer, Page } from '@/components';
-import { getResource, updateResource } from '@/api/resources';
+import { getResource, updateResource } from '@/store/api/resources';
 import { ResourceProperties } from './components';
 import { generateErrorMsg } from '@/utils/messages/generateErrorMsg';
 

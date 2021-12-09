@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 import { useSnackbar } from 'notistack';
 import { Dropzone } from '@/components';
 import { generateErrorMsg } from '@/utils/messages/generateErrorMsg';
-import { staticUrl } from '@/api/host';
+import { staticUrl } from '@/store/api/host';
 
 const uploadImage = () => {};
 

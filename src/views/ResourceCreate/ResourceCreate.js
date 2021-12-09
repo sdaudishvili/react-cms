@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { CardRenderer, ElemsRenderer, Page } from '@/components';
-import { createResource } from '@/api/resources';
+import { createResource } from '@/store/api/resources';
 
 const ResourceCreate = () => {
   const [resource, setResource] = React.useState({ description: '' });
