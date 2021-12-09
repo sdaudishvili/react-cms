@@ -3,7 +3,8 @@ import AuthLayout from './layouts/Auth';
 
 import Storage from './views/Storage';
 import Resources from './views/Resources';
-import Resource from './views/Resource';
+import ResourceUpdate from './views/ResourceUpdate';
+import ResourceCreate from './views/ResourceCreate';
 
 const routes = [
   {
@@ -28,9 +29,14 @@ const routes = [
         component: Resources
       },
       {
-        path: '/resources/:key',
+        path: '/resources/update/:key',
         exact: true,
-        component: Resource
+        component: ResourceUpdate
+      },
+      {
+        path: '/resources/create',
+        exact: true,
+        component: ResourceCreate
       },
       {
         path: '/storage',

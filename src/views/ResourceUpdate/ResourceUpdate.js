@@ -13,7 +13,7 @@ import { generateErrorMsg } from '@/utils/messages/generateErrorMsg';
 // "type": "text",
 // "isRequired": true
 
-const Resource = () => {
+const ResourceUpdate = () => {
   const { key } = useParams();
 
   const [resource, setResource] = React.useState({});
@@ -30,9 +30,9 @@ const Resource = () => {
     if (key) {
       fetchResource();
     }
-  }, []);
+  }, [key]);
 
-  const title = loading ? 'Loading...' : resource.description || 'New Resource';
+  const title = loading ? 'Loading...' : resource.description || 'New ResourceUpdate';
   const { properties = [] } = resource;
   const { enqueueSnackbar } = useSnackbar();
 
@@ -89,10 +89,10 @@ const Resource = () => {
   ];
 
   return (
-    <Page title={title} h1={title} h2="Browse Resource">
+    <Page variant="secondary" title={title} h1={title} h2="Browse ResourceUpdate">
       <ElemsRenderer elems={elems} />
     </Page>
   );
 };
 
-export default Resource;
+export default ResourceUpdate;

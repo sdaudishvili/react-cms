@@ -14,6 +14,6 @@ export const updateResource = (payload, key) => {
   return put(host.RESOURCES, config.resources, payload, key);
 };
 
-export const createResource = (payload) => {
-  return post(host.RESOURCES, config.resources, payload);
+export const createResource = (payload, key) => {
+  return post(host.RESOURCES, `${config.resources}/${key}`, payload);
 };

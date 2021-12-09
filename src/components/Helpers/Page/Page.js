@@ -1,43 +1,29 @@
-import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 import { Box } from '@material-ui/core';
-import useRouter from '@/utils/useRouter';
 import { PageHead } from '@/components';
 
-const { NODE_ENV } = process.env;
-const GA_MEASUREMENT_ID = process.env.REACT_APP_GA_MEASUREMENT_ID;
-
 const useStyles = makeStyles((theme) => ({
-  root: {
+  primary: {
     padding: theme.spacing(3)
+  },
+  secondary: {
+    width: theme.breakpoints.values.lg,
+    maxWidth: '100%',
+    margin: '0 auto',
+    padding: theme.spacing(3, 3, 6, 3)
   }
 }));
 
 const Page = (props) => {
-  const { title, children, className, h1, h2, action, ...rest } = props;
+  const { title, children, className, h1, h2, action, variant, ...rest } = props;
   const classes = useStyles();
 
-  const router = useRouter();
-
-  useEffect(() => {
-    if (NODE_ENV !== 'production') {
-      return;
-    }
-
-    if (window.gtag) {
-      window.gtag('config', GA_MEASUREMENT_ID, {
-        page_path: router.location.pathname,
-        page_name: title
-      });
-    }
-  }, [title, router]);
-
   return (
-    <div {...rest} className={clsx(className, classes.root)}>
+    <div {...rest} className={clsx(className, classes[variant])}>
       <Helmet>
         <title>{title}</title>
       </Helmet>
@@ -53,7 +39,8 @@ Page.propTypes = {
   className: PropTypes.string,
   h1: PropTypes.string,
   h2: PropTypes.string,
-  action: PropTypes.node
+  action: PropTypes.node,
+  variant: PropTypes.string
 };
 
 Page.defaultProps = {
@@ -62,7 +49,8 @@ Page.defaultProps = {
   className: '',
   h1: '',
   h2: '',
-  action: null
+  action: null,
+  variant: 'primary'
 };
 
 export default Page;

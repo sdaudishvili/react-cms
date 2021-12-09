@@ -14,7 +14,7 @@ const Resources = () => {
       h1="Browse Resources"
       h2="Resources"
       action={
-        <Button variant="contained" color="primary" onClick={() => router.history.push(`/resources/update`)}>
+        <Button variant="contained" color="primary" onClick={() => router.history.push(`/resources/create`)}>
           Add Resource
         </Button>
       }
